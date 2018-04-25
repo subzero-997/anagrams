@@ -13,21 +13,24 @@ primes = {'e': 2, 't': 3, 'a': 5, 'o': 7, 'i': 11, 'n': 13, 's': 17, 'h': 19, 'r
           'm': 43, 'w': 47, 'f': 53, 'g': 59, 'y': 61, 'p': 67, 'b': 71, 'v': 73, 'k': 79, 'j': 83, 'x': 89, 'q': 97, 'z': 101}
 
 
-def getprime(value): return primes.get(value)
+def getprime(value): 
+    p = primes.get(value)
+    if type(p) != int: p=1
+    return p
 
 def main():
     # a multidict containing a set of words withe same product
     wordDict = defaultdict(set)
 
     #get the data
-    url = "https://raw.githubusercontent.com/dwyl/english-words/master/words_alpha.txt"
-    wordlist = urllib2.urlopen(url).read().split("\r\n")
+    url = "http://www.anagrammy.com/wordlists/small.txt"
+    wordlist = urllib2.urlopen(url).read().strip().split("\n")
 
     for word in wordlist:
 
         #use list comprehension to make a list of primes for each letter
         #in the word
-        primes = [getprime(letter) for letter in word]
+        primes = [getprime(letter) for letter in word.rstrip()]
 
         #use the reduce function to multiply together
         #the list of primes
