@@ -23,7 +23,7 @@ def main():
     wordDict = defaultdict(set)
 
     #get the data
-    url = "http://www.anagrammy.com/wordlists/small.txt"
+    url = "https://raw.githubusercontent.com/hermitdave/FrequencyWords/master/content/2016/en/en_50k.txt"
     wordlist = urllib2.urlopen(url).read().strip().split("\n")
 
     for word in wordlist:
